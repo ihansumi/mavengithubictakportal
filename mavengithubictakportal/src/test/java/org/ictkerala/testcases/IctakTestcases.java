@@ -18,5 +18,13 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.btnclk();
 		
 	}
+	public void TC_2_1_1() {
+		driver.get("https://ictak-internship-portal-client.vercel.app/");
+		lobj.btnclk();
+		lobj.getUsername("ictak@example.com");
+		lobj.getPasswd("0000");
+		lobj.btnclklog();
+		
+	}
 
 }
