@@ -1,6 +1,7 @@
 package org.ictkerala.pages;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -110,9 +111,25 @@ public class IctakLoginPage {
 		WebElement editbut=driver.findElement(By.xpath("//button[.//*[name()='svg' and @data-testid='EditIcon']]"));
 		editbut.click();
 	}
-	public void updatebutton() {
-		WebElement updbut=driver.findElement(By.xpath("//button[normalize-space()='Update']"));
-		updbut.click();
+	public void updatebutton() throws Exception {
+		// 1. Click on the Update button
+		WebElement updateBtn = driver.findElement(By.xpath("//button[normalize-space()='Update']"));
+		updateBtn.click();
+
+		// 2. Wait for a few seconds to see if anything changes
+		Thread.sleep(3000); // Or use WebDriverWait for better practice
+
+		// 3. Check if project topic was updated
+		String updatedTopic = driver.findElement(By.xpath("//table//tr[last()]/td[1]")).getText(); // adjust xpath as per actual column
+
+		// 4. Validate update
+		if (!updatedTopic.equals("NewTopicName")) {
+		    System.out.println("Update failed. Project topic still shows: " + updatedTopic);
+		    Assert.fail("Project topic was not updated after clicking the 'Update' button.");
+		} else {
+		    System.out.println("Project updated successfully.");
+		}		
+		
 	}
 	public void clearfields() {
 		WebElement topicField = driver.findElement(By.xpath("//input[@name='topic']"));  
@@ -122,11 +139,16 @@ public class IctakLoginPage {
 		topicField.clear();
 		durationField.clear();	
 	}
-	public void deletebut() {
+	public void deletebut()  {
 		
-		WebElement delete=driver.findElement(By.xpath("//button[normalize-space()='DeleteIcon']"));
-		delete.click();
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
+		    By.xpath("//table/tbody/tr[last()]//button[contains(@class,'MuiIconButton-root')][2]")
+		));
+		deleteBtn.click();
+		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+		System.out.println("Alert text: " + alert.getText());
+		alert.accept(); // Confirms deletion
 	}
 	public void okbutton() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

@@ -175,7 +175,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.getPasswd("0000");
 		lobj.btnclklog();
 		lobj.addProj();
-		lobj.pjtopic("abcdef+*-/*/*/");
+		lobj.pjtopic("&**(((+*-/*/*/");
 		lobj.pjduration("+*-*/**-++");
 		lobj.butadd();
 		lobj.invalidFormats();
@@ -195,7 +195,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.invalidFormats();
 	}
     @Test
-	public void TC_3_2_1() {
+	public void TC_3_2_1() throws Exception {
 		driver.get("https://ictak-internship-portal-client.vercel.app/");
 		lobj.btnclk();
 		lobj.getUsername("ictak@example.com");
@@ -212,7 +212,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.updatebutton();		
 	}
     @Test
-    public void TC_3_2_2() {
+    public void TC_3_2_2() throws Exception {
 		driver.get("https://ictak-internship-portal-client.vercel.app/");
 		lobj.btnclk();
 		lobj.getUsername("ictak@example.com");
@@ -229,7 +229,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.updatebutton();				
 	}
     @Test
-    public void TC_3_2_3() {
+    public void TC_3_2_3() throws Exception {
 		driver.get("https://ictak-internship-portal-client.vercel.app/");
 		lobj.btnclk();
 		lobj.getUsername("ictak@example.com");
@@ -247,7 +247,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		
 	}
        @Test
-    	public void TC_3_3_1() {
+    	public void TC_3_3_1()  {
 		driver.get("https://ictak-internship-portal-client.vercel.app/");
 		lobj.btnclk();
 		lobj.getUsername("ictak@example.com");
