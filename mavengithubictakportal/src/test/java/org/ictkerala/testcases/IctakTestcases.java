@@ -14,6 +14,8 @@ public class IctakTestcases extends ConfigurationsPage{
 	IctakLoginPage lobj;
 	String Expected_Message="Invalid username or password";
 	String Expected_msg="404: NOT_FOUND";
+	String Expected_Home="Admin Dashboard";
+	
 	
 	@BeforeClass
 	public void objinit() {
@@ -148,7 +150,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.btnclklog();
 		lobj.addProj();
 		lobj.pjtopic("@#$%%%&**(");
-		lobj.pjduration("6 months+-**///");
+		lobj.pjduration("#####+-**///");
 		lobj.butadd();
 		lobj.invalidFormats();
 	}
@@ -258,6 +260,36 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.deletebut();
 		lobj.okbutton();
 	}
+       @Test
+       	public void TC_3_4_1() {
+    	driver.get("https://ictak-internship-portal-client.vercel.app/");
+    	lobj.logbuttonclk();
+    	lobj.setEmail("ictak@example.com");
+    	lobj.setPassword("0000");
+    	lobj.buttonClick();
+    	String act_result=lobj.adminDashboard();
+    	Assert.assertEquals(act_result,Expected_Home);
+    	}
+       @Test
+       public void TC_3_4_2() {
+    	driver.get("https://ictak-internship-portal-client.vercel.app/");
+    	lobj.logbuttonclk();
+    	lobj.setEmail("ictak@example.com");
+    	lobj.setPassword("0000");
+    	lobj.buttonClick();
+    	lobj.mentorclick();
+    		}
+    	@Test
+    	public void TC_3_4_3() {
+    	driver.get("https://ictak-internship-portal-client.vercel.app/");
+    	lobj.logbuttonclk();
+    	lobj.setEmail("ictak@example.com");
+    	lobj.setPassword("0000");
+    	lobj.buttonClick();
+    	lobj.mentorclick();
+    	lobj.addMentorbtn();
+    }
+
        @Test
        public void TC_3_4_4() {
     	driver.get("https://ictak-internship-portal-client.vercel.app/");
@@ -405,7 +437,7 @@ public class IctakTestcases extends ConfigurationsPage{
        	lobj.buttonClick();
        	lobj.clickrefmaterial();
        	lobj.addrefmaterial();
-       	lobj.addtopic("HTML Basics ");
+       	lobj.addtopic("HTML Basics");
        	lobj.enter_refmaterial("Tutorials Point");
        	lobj.add_date("20/08/2024");
        	lobj.add_url("https://example.com ");

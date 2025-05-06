@@ -47,7 +47,7 @@ public class IctakLoginPage {
 		WebElement emailField = driver.findElement(By.name("email"));
 		String validationMessage = (String)((JavascriptExecutor) driver)
 		    .executeScript("return arguments[0].validationMessage;", emailField);
-		System.out.println("Validation Message: " + validationMessage);
+		System.out.println("Validation Message(blank email): " + validationMessage);
 
 	}
 	public void blankpassword() {
@@ -318,15 +318,23 @@ public class IctakLoginPage {
 	public void alertmessage()
 	{
 		try {
-		Alert alert1=driver.switchTo().alert();
-		String alerttext1=alert1.getText();
-		System.out.println("Alert message:"+alerttext1);
-		alert1.accept();
-		}catch(NoAlertPresentException e) {
-			System.out.println("no alert is present "+e.getRawMessage());
-		}catch (Exception e) {
-	        System.out.println("Unhandled exception occurred: " + e.getMessage());
-		}
+		    // Wait for the alert to appear
+		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+		    // Get alert text (optional)
+		    String alertText = alert.getText();
+		    System.out.println("Alert text: " + alertText);
+
+		    // Accept the alert
+		    alert.accept();
+
+		    // Optional: Add assertion
+		    Assert.assertEquals(alertText, "New Material added Successfully");
+
+		} catch (NoAlertPresentException e) {
+		    System.out.println("No alert was present.");
+		}	
 	}
 	public void viewbtn()
 	{
@@ -339,9 +347,17 @@ public class IctakLoginPage {
 		WebElement logout=driver.findElement(By.xpath("//span[text()='Logout']"));
 		logout.click();
 		
+	}	
+	public void mentorclick()
+	{
+		WebElement Mentor=driver.findElement(By.xpath("//span[text()='Mentors']"));
+		Mentor.click();
+	}
+	public void addMentorbtn()
+	{
+		WebElement mentorbtn=driver.findElement(By.xpath("//button[text()='+ Add Mentor']"));
+		mentorbtn.click();
 	}
 
-
-	
 	}
 
