@@ -4,6 +4,8 @@ import static org.testng.Assert.assertEquals;
 
 import org.ictkerala.pages.IctakLoginPage;
 import org.ictkerala.presettings.ConfigurationsPage;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -111,7 +113,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.addProj();
 		lobj.pjtopic("Software Testing");
 		lobj.butadd();
-		lobj.blankDurtopic();	
+		lobj.blankfieldDurtopic();	
 	}
 	@Test
 	public void TC_3_1_4() {
@@ -123,7 +125,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.addProj();
 		lobj.pjduration("6 months");
 		lobj.butadd();
-		lobj.blankDurtopic();
+		lobj.blankfieldDurtopic();
 		
 	}
 	@Test
@@ -135,7 +137,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.btnclklog();
 		lobj.addProj();
 		lobj.butadd();
-		lobj.blankDurtopic();
+		lobj.blankfieldDurtopic();
 	}
 	@Test
 	public void TC_3_1_6() {
@@ -257,6 +259,56 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.okbutton();
 	}
        @Test
+       public void TC_3_4_4() {
+    	driver.get("https://ictak-internship-portal-client.vercel.app/");
+   		lobj.btnclk();
+   		lobj.getUsername("ictak@example.com");
+   		lobj.getPasswd("0000");
+   		lobj.btnclklog();  
+   		lobj.mentorloc();
+   		lobj.addmentor();
+   		lobj.mentname("Rajesh Kumar");
+   		lobj.mentemail("rajeshk@ictak.in");
+   		lobj.mentphone("9876543210");
+   		lobj.mentpassword("Rajesh@123");
+   		lobj.projtop(); 		
+       }
+       @Test
+       public void TC_3_4_5() {
+    	   driver.get("https://ictak-internship-portal-client.vercel.app/");
+      		lobj.btnclk();
+      		lobj.getUsername("ictak@example.com");
+      		lobj.getPasswd("0000");
+      		lobj.btnclklog();  
+      		lobj.mentorloc();
+      		lobj.addmentor();
+      		lobj.mentname("Rajesh Kumar");
+      		lobj.mentemail("rajeshk@ictak.in");
+      		lobj.mentphone("9876543210");
+      		lobj.mentpassword("Rajesh@123");
+      		lobj.projtop(); 
+      		lobj.pjtdropdown();
+      		lobj.mentadd();     		
+       }
+       @Test
+       public void TC_3_4_6() {
+    	   driver.get("https://ictak-internship-portal-client.vercel.app/");
+     		lobj.btnclk();
+     		lobj.getUsername("ictak@example.com");
+     		lobj.getPasswd("0000");
+     		lobj.btnclklog();  
+     		lobj.mentorloc();
+     		lobj.addmentor();
+     		lobj.mentname("Rajesh Kumar");
+     		lobj.mentemail("rajeshk@ictak.in");
+     		lobj.mentphone("9876543210");
+     		lobj.mentpassword("Rajesh@123");
+     		lobj.projtop(); 
+     		lobj.pjtdropdown();
+     		lobj.mentadd(); 
+     		lobj.MentorAdd_Failure();
+       }
+       @Test
        public void TC_4_1_1() {
    		driver.get("https://ictak-internship-portal-client.vercel.app/");
    		lobj.btnclk();
@@ -268,4 +320,159 @@ public class IctakTestcases extends ConfigurationsPage{
    		String error=lobj.errorcode();
    		assertEquals(error, Expected_msg); 		
    	}	
+       @Test
+       public void TC_5_1_1() {
+       driver.get("https://ictak-internship-portal-client.vercel.app/"); 
+       lobj.logbuttonclk();
+       lobj.setEmail("anandhu@example.com");
+       lobj.setPassword("Mentor@1234");
+       lobj.buttonClick();
+       }
+       @Test
+       public void TC_5_1_2()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("12301");
+       	lobj.buttonClick();
+       	String errmsg=lobj.errorMessage();
+       	Assert.assertEquals(errmsg, Expected_Message);
+       }
+       @Test
+       public void TC_5_1_3()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anand@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	String errmsg=lobj.errorMessage();
+       	Assert.assertEquals(errmsg, Expected_Message);
+       }
+       @Test
+       public void TC_5_1_4()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.blankusername();
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       }
+       @Test
+       public void TC_5_1_5()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.blankpassword();
+       	lobj.buttonClick();      	
+       }
+       @Test
+       public void TC_5_1_6()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.blankemailpassword();
+       	lobj.buttonClick();     	
+       }
+       @Test
+       public void TC_5_2_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       }
+       @Test
+       public void TC_5_3_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	lobj.clickrefmaterial();
+       	}
+       @Test
+       public void TC_5_4_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	lobj.clickrefmaterial();
+       	lobj.addrefmaterial();
+       	lobj.addtopic("HTML Basics ");
+       	lobj.enter_refmaterial("Tutorials Point");
+       	lobj.add_date("20/08/2024");
+       	lobj.add_url("https://example.com ");
+       	lobj.add_status("completed");
+       	lobj.submitbtn();
+       	lobj. alertmessage();
+       	}
+       @Test
+       public void TC_5_5_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	lobj.clickrefmaterial();
+       	lobj.addrefmaterial();
+       	lobj.blanktopicurl();
+       	lobj.enter_refmaterial("Tutorials Point");
+       	lobj.add_date("20/08/2024");
+       	lobj.add_status("completed");
+       	lobj.submitbtn();
+       	}
+       @Test
+       public void TC_5_6_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	lobj.clickrefmaterial();
+       	lobj.addrefmaterial();
+       	lobj.addtopic("JAVA");
+       	lobj.enter_refmaterial("Tutorials Point");
+       	lobj.add_date("16/08/2024");
+       	lobj.add_url("htt://example_com ");
+       	lobj.add_status("completed");
+       	lobj.submitbtn();
+       	lobj. alertmessage();
+       	}
+       @Test
+       public void TC_5_7_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	lobj.viewbtn();
+       	}
+       @Test
+       public void TC_5_8_1()
+       {
+       	driver.get("https://ictak-internship-portal-client.vercel.app/");
+       	lobj.logbuttonclk();
+       	lobj.setEmail("anandhu@example.com");
+       	lobj.setPassword("Mentor@1234");
+       	lobj.buttonClick();
+       	lobj.logoutbtn();
+       	}
+       
+       @AfterTest
+   	public void handleTestResult() {
+   		if(driver!=null) {
+   			driver.close();
+   		}
+       }
 }
+
