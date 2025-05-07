@@ -12,9 +12,7 @@ import org.testng.annotations.Test;
 public class IctakTestcases extends ConfigurationsPage{
 	
 	IctakLoginPage lobj;
-	String Expected_Message="Invalid username or password";
-	String Expected_msg="404: NOT_FOUND";
-	String Expected_Home="Admin Dashboard";
+	
 	
 	
 	@BeforeClass
@@ -43,7 +41,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.getPasswd("1111");
 		lobj.btnclklog();
 		String errmsg=lobj.errorMessage();
-		assertEquals(errmsg, Expected_Message);		
+		assertEquals(errmsg, Constants.Expected_Message);		
 	}
 	@Test
 	public void TC_2_1_3() {
@@ -53,7 +51,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.getPasswd("0000");
 		lobj.btnclklog();
 		String errmsg=lobj.errorMessage();
-		assertEquals(errmsg, Expected_Message);
+		assertEquals(errmsg, Constants.Expected_Message);
 	}
 	@Test
 	public void TC_2_1_4() {
@@ -255,7 +253,7 @@ public class IctakTestcases extends ConfigurationsPage{
     	lobj.setPassword("0000");
     	lobj.buttonClick();
     	String act_result=lobj.adminDashboard();
-    	Assert.assertEquals(act_result,Expected_Home);
+    	Assert.assertEquals(act_result,Constants.Expected_Home);
     	}
        @Test
        public void TC_3_4_2() {
@@ -337,7 +335,7 @@ public class IctakTestcases extends ConfigurationsPage{
    		lobj.logout();
    		driver.get("https://ictak-internship-portal-client.vercel.app/admin");
    		String error=lobj.errorcode();
-   		assertEquals(error, Expected_msg); 		
+   		assertEquals(error, Constants.Expected_msg); 		
    	}	
        @Test
        public void TC_5_1_1() {
@@ -356,7 +354,7 @@ public class IctakTestcases extends ConfigurationsPage{
        	lobj.setPassword("12301");
        	lobj.buttonClick();
        	String errmsg=lobj.errorMessage();
-       	Assert.assertEquals(errmsg, Expected_Message);
+       	Assert.assertEquals(errmsg, Constants.Expected_Message);
        }
        @Test
        public void TC_5_1_3()
@@ -367,7 +365,7 @@ public class IctakTestcases extends ConfigurationsPage{
        	lobj.setPassword("Mentor@1234");
        	lobj.buttonClick();
        	String errmsg=lobj.errorMessage();
-       	Assert.assertEquals(errmsg, Expected_Message);
+       	Assert.assertEquals(errmsg, Constants.Expected_Message);
        }
        @Test
        public void TC_5_1_4()
