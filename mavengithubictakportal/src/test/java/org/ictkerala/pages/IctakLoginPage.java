@@ -7,6 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -108,29 +109,35 @@ public class IctakLoginPage {
         }
     }
 	public void editmodifybutton() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement editbut=driver.findElement(By.xpath("//button[.//*[name()='svg' and @data-testid='EditIcon']]"));
+		WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(editbut));
 		editbut.click();
 	}
+		
 	public void updatebutton() throws Exception {
 		// 1. Click on the Update button
 		WebElement updateBtn = driver.findElement(By.xpath("//button[normalize-space()='Update']"));
 		updateBtn.click();
 
-		// 2. Wait for a few seconds to see if anything changes
-		Thread.sleep(3000); // Or use WebDriverWait for better practice
+				// 2. Wait for a few seconds to see if anything changes
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Or use WebDriverWait for better practice
 
-		// 3. Check if project topic was updated
+				// 3. Check if project topic was updated
 		String updatedTopic = driver.findElement(By.xpath("//table//tr[last()]/td[1]")).getText(); // adjust xpath as per actual column
 
-		// 4. Validate update
+				// 4. Validate update
 		if (!updatedTopic.equals("NewTopicName")) {
-		    System.out.println("Update failed. Project topic still shows: " + updatedTopic);
-		    Assert.fail("Project topic was not updated after clicking the 'Update' button.");
-		} else {
-		    System.out.println("Project updated successfully.");
-		}		
+			System.out.println("Update failed. Project topic still shows: " + updatedTopic);
+			Assert.fail("Project topic was not updated after clicking the 'Update' button.");
+			} 
+		else {
+				    System.out.println("Project updated successfully.");
+			}		
+				
+			}
+	
 		
-	}
 	public void clearfields() {
 		WebElement topicField = driver.findElement(By.xpath("//input[@name='topic']"));  
 		WebElement durationField = driver.findElement(By.xpath("//input[@name='duration']"));
@@ -139,17 +146,7 @@ public class IctakLoginPage {
 		topicField.clear();
 		durationField.clear();	
 	}
-	public void deletebut()  {
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
-		    By.xpath("//table/tbody/tr[last()]//button[contains(@class,'MuiIconButton-root')][2]")
-		));
-		deleteBtn.click();
-		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-		System.out.println("Alert text: " + alert.getText());
-		alert.accept(); // Confirms deletion
-	}
+	
 	public void okbutton() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='OK']")));

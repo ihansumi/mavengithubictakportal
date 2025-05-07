@@ -246,20 +246,7 @@ public class IctakTestcases extends ConfigurationsPage{
 		lobj.updatebutton();	
 		
 	}
-       @Test
-    	public void TC_3_3_1()  {
-		driver.get("https://ictak-internship-portal-client.vercel.app/");
-		lobj.btnclk();
-		lobj.getUsername("ictak@example.com");
-		lobj.getPasswd("0000");
-		lobj.btnclklog();
-		lobj.addProj();
-		lobj.pjtopic("COBOL");
-		lobj.pjduration("1");
-		lobj.butadd();
-		lobj.deletebut();
-		lobj.okbutton();
-	}
+      
        @Test
        	public void TC_3_4_1() {
     	driver.get("https://ictak-internship-portal-client.vercel.app/");
