@@ -1,5 +1,6 @@
 package org.ictkerala.testcases;
 
+
 import static org.testng.Assert.assertEquals;
 
 import org.ictkerala.pages.IctakLoginPage;
@@ -7,14 +8,16 @@ import org.ictkerala.presettings.ConfigurationsPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.ictkerala.listeners.ScreenshotListener;
 
+
+@Listeners(ScreenshotListener.class)
 public class IctakTestcases extends ConfigurationsPage{
 	
 	IctakLoginPage lobj;
-	
-	
-	
+		
 	@BeforeClass
 	public void objinit() {
 		lobj=new IctakLoginPage(driver);
