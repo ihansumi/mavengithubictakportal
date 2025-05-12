@@ -381,6 +381,21 @@ public class IctakLoginPage {
 		WebElement mentorbtn=driver.findElement(By.xpath("//button[text()='+ Add Mentor']"));
 		mentorbtn.click();
 	}
-
+	public void invalidUrl() {
+	    try {
+	        Alert alert = driver.switchTo().alert();
+	        String alertText = alert.getText();
+	        System.out.println("Alert Message: " + alertText);
+	        
+	        Assert.assertEquals(alertText.trim(), "Please enter a valid url", "Unexpected alert message.");
+	        alert.accept();  // Dismiss the alert
+	    } catch (NoAlertPresentException e) {
+	        // Fail test if alert is not present
+	        Assert.fail("Alert not displayed for invalid url");
+	    }
 	}
+		
+	}
+	
+
 

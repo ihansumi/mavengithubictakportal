@@ -465,7 +465,7 @@ public class IctakTestcases extends ConfigurationsPage{
        	lobj.add_url("htt://example_com ");
        	lobj.add_status("completed");
        	lobj.submitbtn();
-       	lobj. alertmessage();
+       	lobj.invalidUrl();
        	}
        @Test
        public void TC_5_7_1()
